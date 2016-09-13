@@ -2,12 +2,112 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}CRM-TASC{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/foundation/css/foundation.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+
+        <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/angular/angular.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/foundation/js/foundation.min.js') }}"></script>
+        <script src="{{ asset('assets/js/app.js') }}"></script>
+
+
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                <a href="/"><img class="header_logo" src="http://tasc.es/images/logo_TASC.gif"></a>
+                </li>
+                <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
+
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right">
+                    <li class="active"><a href="#">Right Button Active</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Right Button Dropdown</a>
+                        <ul class="dropdown">
+                            <li><a href="#">First link in dropdown</a></li>
+                            <li class="active"><a href="#">Active link in dropdown</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Left Nav Section -->
+                <ul class="left">
+
+                </ul>
+            </section>
+        </nav>
+
+
+            <div class="document"></div>
+                <div class="large-3 columns">
+                    <div id="sidebar">
+                        {% block sidebar %}
+                            <ul class="side-nav">
+                                <li><h3 class="centered"> {{ sidebar_title|upper }}</h3></li>
+                                <li class="divider"></li>
+                                {% for element in sidebar_elements %}
+                                    <li class="element-row">
+                                        <a href="{{ element['link'] }}">{{ element['name']|capitalize }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="large-9 columns">
+                    <div id="content">
+                        {% block body %}
+
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="large-12 columns">
+
+                        {% block footer %}
+                            footer
+                        {% endblock %}
+                </div>
+            </footer>
+        {% block javascripts %}
+            <script>
+                $(window).bind("load", function () {
+                    adjust();
+                });
+                $(window).bind("resize", function () {
+                    adjust();
+                });
+
+                function adjust() {
+                    var footer = $("footer");
+                    var pos = footer.position();
+                    var height = $(window).height();
+                    height = height - pos.top;
+                    height = height - footer.height();
+                    if (height > 0) {
+                        footer.css({
+                            'margin-top': height + 'px'
+                        });
+                    }
+
+                    var sidebar = $('#sidebar');
+                    sidebar.css({
+                        'height': (height - 10) + 'px'
+                    });
+                }
+            </script>
+
+        {% endblock %}
+
     </body>
 </html>
