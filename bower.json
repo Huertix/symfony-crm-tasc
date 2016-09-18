@@ -1,0 +1,22 @@
+{
+  "name": "symfony-crm-tasc",
+  "homepage": "https://github.com/Huertix/symfony-crm-tasc",
+  "authors": [
+    "David Huerta <dhuerta23@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "foundation": "^5.5.3"
+  }
+}

@@ -1,13 +1,8 @@
 vendor
 app/cache
-<<<<<<< HEAD
 .idea/
 design/
-app/parameters.yml
 app/logs/
 app/cache/
 app/config/parameters.yml
-app/config/parameters.yml
-=======
 app/logs/
->>>>>>> b8c9f4b23fd47954b9315df637e3a579dba342e5
