@@ -10,22 +10,35 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="articulo")
+ */
 class Article {
 
-    private $name;
-    private $ref;
-    
-    public function __construct($name, $ref) {
-        $this->name = $name;
-        $this->ref = $ref;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $nombre;
+
+    /**
+     * @ORM\Column(type="string")
+     * @ORM\Id
+     */
+    private $codigo;
+
+    /**
+     * @return mixed
+     */
+    public function getCodigo() {
+        return $this->codigo;
     }
 
-    public function getName() {
-        return $this->name;
+    /**
+     * @return mixed
+     */
+    public function getNombre() {
+        return $this->nombre;
     }
 
-    public function getReference() {
-        return $this->ref;
-    }
-    
 }

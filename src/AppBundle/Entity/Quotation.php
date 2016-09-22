@@ -18,59 +18,56 @@ class Quotation {
 
     /**
      * @ORM\Column(type="string")
-     * @ORM\numero
+     * @ORM\id
      */
-    private $number;
-
-    /**
-     * @ORM\Column(type="timestamp")
-     * @ORM\fecha
-     */
-    private $timestamp;
+    private $numero;
 
     /**
      * @ORM\Column(type="string")
-     * @ORM\cliente
      */
-    private $client;
+    private $fecha;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $cliente;
 
     /**
      * @ORM\Column(type="integer")
-     * @ORM\importe
      */
-    private $total_eur;
+    private $importe;
 
 
     /**
      * @return mixed
      */
-    public function getNumber()
+    public function getNumero()
     {
-        return $this->number;
+        return $this->numero;
     }
 
     /**
      * @return mixed
      */
-    public function getTimestamp()
+    public function getFecha()
     {
-        return $this->timestamp;
+        return $this->fecha;
     }
 
     /**
      * @return mixed
      */
-    public function getClient()
+    public function getCliente()
     {
-        return $this->client;
+        return $this->cliente;
     }
 
     /**
      * @return mixed
      */
-    public function getTotalEur()
+    public function getImporte()
     {
-        return $this->total_eur;
+        return $this->importe;
     }
 
 }
