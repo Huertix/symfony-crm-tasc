@@ -1,0 +1,24 @@
+body {
+  background: antiquewhite; }
+  body .header_logo {
+    margin-left: 10px;
+    height: 100%; }
+  body footer {
+    background: #333;
+    height: 30px;
+    color: white;
+    z-index: 10; }
+  body #content {
+    background: white; }
+  body .document {
+    width: 90%; }
+  body #sidebar {
+    margin: 5px;
+    padding: 5px;
+    background: white;
+    height: 100%;
+    overflow-y: scroll; }
+  body .sidebar_title {
+    margin-left: auto;
+    margin-right: auto;
+    float: none !important; }

@@ -1,0 +1,25 @@
+{
+  "name": "crm-web",
+  "version": "1.0.0",
+  "description": "crm-tasc ========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huertix/symfony-crm-tasc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Huertix/symfony-crm-tasc/issues"
+  },
+  "homepage": "https://github.com/Huertix/symfony-crm-tasc#readme",
+  "devDependencies": {
+    "child_process": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-phpunit": "^0.21.4",
+    "gulp-sass": "^2.3.2"
+  }
+}

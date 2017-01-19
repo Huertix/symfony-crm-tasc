@@ -42,6 +42,7 @@ text size = 20971520
 
 3. connect to the SQL server from the command line
 tsql -S my_server -U myusername
+example: tsql -S ip:port -U mr.x
 
 4. install the DBLIB PDO Driver.
 apt-get install php5-sybase

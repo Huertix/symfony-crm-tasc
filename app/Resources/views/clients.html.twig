@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block filter %}
+
+
+    <form>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Buscar
+                    <input type="search" placeholder="Cliente" />
+                </label>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h2> {{ content }}</h2>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+    </script>
+{% endblock %}
