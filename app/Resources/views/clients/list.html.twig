@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="content">
+        <input type="text" onkeyup="filter(this)" name="search" />
+        <input type="text" name="list_matched"/>
+    </div>
+    <table class="table table-striped" id="clients_list">
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr class="client_row">
+                <td>{{ client.codigo }}</td>
+                <td><a href="{{ path('clients_show', {'clientCode': client.codigo}) }}">{{  client.nombre }}</a></td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script language="javascript" type="text/javascript">
+        function filter(element) {
+
+            var count = 0;
+            var value = $(element).val();
+            value = value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                return letter.toUpperCase();
+            });
+
+            $(".client_row").each(function() {
+                if ($(this).text().search(value) > -1) {
+                    $(this).show();
+                    count++;
+                    $("input[name='list_matched']").show();
+                }
+                else {
+                    $(this).hide();
+                }
+            });
+
+            $("input[name='list_matched']").val(count);
+            
+        }
+    </script>
+
+{% endblock %}
