@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="content">
+    <table class="table table-striped" id="clients_list">
+        <thead>
+        <tr>
+            <th class="col-md-2">
+                Presupuesto
+            </th>
+            <th>
+               Cliente
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Accion
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for quotation in quotations %}
+            <tr class="client_row">
+                <td class="col-md-2">{{ quotation.numero }}</td>
+                <td>{{ quotation.cliente }}</td>
+                <td>{{ quotation.fecha }}</td>
+                <td>
+                    <button class="btn btn-danger btn-xs">Modificar</button>
+                    <button class="btn btn-info btn-xs">Clonar</button>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+{% endblock %}

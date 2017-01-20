@@ -1,43 +1,55 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="content">
-        <input type="text" onkeyup="filter(this)" name="search" />
-        <input type="text" name="list_matched"/>
-    </div>
-    <table class="table table-striped" id="clients_list">
-        <thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr class="client_row">
-                <td>{{ client.codigo }}</td>
-                <td><a href="{{ path('clients_show', {'clientCode': client.codigo}) }}">{{  client.nombre }}</a></td>
+        <table class="table table-striped" id="clients_list">
+            <thead>
+            <tr>
+                <th>
+                    <div class="col-md-2">Codigo</div>
+                </th>
+                <th>
+                    <div class="col-md-4">Clientes</div>
+                    <div class="col-md-8">
+                        <input type="text" onkeyup="filter(this)" name="search" id="search" placeholder="Filtro" class="pull-right"/>
+                    </div>
+                </th>
 
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr class="client_row">
+                    <td>{{ client.codigo }}</td>
+                    <td><a href="{{ path('clients_show', {'clientCode': client.codigo}) }}">{{  client.nombre }}</a></td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
 
+    {#Function for filtering lists#}
     <script language="javascript" type="text/javascript">
         function filter(element) {
 
             var count = 0;
             var value = $(element).val();
-            value = value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-                return letter.toUpperCase();
-            });
+            value = value.toUpperCase();
+            console.log(value);
 
             $(".client_row").each(function() {
-                if ($(this).text().search(value) > -1) {
+                text = $(this)
+                        .text()
+                        .replace(/(\r\n|\n|\r)/gm,"")
+                        .toString()
+                        .trim()
+                        .toUpperCase();
+                console.log(text);
+                if (text.search(value) > -1) {
                     $(this).show();
                     count++;
                     $("input[name='list_matched']").show();
@@ -47,8 +59,28 @@
                 }
             });
 
-            $("input[name='list_matched']").val(count);
-            
+
+//            value = value.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+//                return letter.toUpperCase();
+//            });
+//
+//            $(".client_row").each(function() {
+//                text = $(this).text().replace(/(\r\n|\n|\r)/gm,"").trim();
+//                text = text.toUpperCase()
+//                console.log(text);
+//                console.log(value);
+//                if (text.search(value) > -1) {
+//                    $(this).show();
+//                    count++;
+//                    $("input[name='list_matched']").show();
+//                }
+//                else {
+//                    $(this).hide();
+//                }
+//            });
+//
+//            $("input[name='list_matched']").val(count);
+//
         }
     </script>
 

@@ -1,8 +1,6 @@
-vendor
-app/cache
-.idea/
-design/
+var/
+vendor/
 app/logs/
 app/cache/
 app/config/parameters.yml
-app/logs/
+var/
