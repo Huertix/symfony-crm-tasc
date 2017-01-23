@@ -10,62 +10,46 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Client {
 
+
   /**
+   * @ORM\Column(name="codigo", type="string")
    * @ORM\Id
-   * @ORM\Column(type="string")
+   * @ORM\GeneratedValue(strategy="NONE")
    */
-  private $codigo;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $cif;
+  protected $id;
+
   /**
    * @ORM\Column(type="string")
    */
-  private $nombre;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $nombre2;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $direccion;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $codpost;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $poblacion;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $provincia;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $pais;
-  ///**
-  // * @ORM\Column(type="string")
-  // */
-  //private $vendedor; //Todo: entity vendedor
-  ///**
-  // * @ORM\Column(type="date")
-  // */
-  //private $f_alta;
+  protected $nombre;
+
+  /**
+   * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quotation", mappedBy="cliente")
+   */
+  protected $presupuestos;
 
 
-  public function getCodigo() {
-    return $this->codigo;
+  public function getId() {
+    return $this->id;
   }
 
   public function getNombre() {
     return $this->nombre;
   }
 
+  /**
+   * @return mixed
+   */
+  public function getPresupuestos() {
+    return $this->presupuestos;
+  }
 
+  /**
+   * @param mixed $presupuestos
+   */
+  public function setPresupuestos($presupuestos) {
+    $this->presupuestos = $presupuestos;
+  }
 
 
 

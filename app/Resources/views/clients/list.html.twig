@@ -19,8 +19,17 @@
             <tbody>
             {% for client in clients %}
                 <tr class="client_row">
-                    <td>{{ client.codigo }}</td>
-                    <td><a href="{{ path('clients_show', {'clientCode': client.codigo}) }}">{{  client.nombre }}</a></td>
+
+                    <td>{{ client.id }}</td>
+                    <td><a href="{{ path('clients_show', {'clientCode': client.id}) }}">{{  client.nombre }}</a></td>
+                    <td>
+                        <select name="{{ client.id }}" id="{{ client.id }}">
+
+                            {% for presupuesto in client.presupuestos %}
+                                <option value="{{ presupuesto.numero }}">{{ presupuesto.numero }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
 
                 </tr>
             {% endfor %}

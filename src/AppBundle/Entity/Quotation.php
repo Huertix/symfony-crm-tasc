@@ -27,9 +27,11 @@ class Quotation {
   private $fecha;
 
   /**
-   * @ORM\Column(type="string")
+   * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="presupuestos")
+   * @ORM\JoinColumn(name="cliente", referencedColumnName="codigo")
    */
   private $cliente;
+
 
   /**
    * @return mixed
@@ -64,6 +66,15 @@ class Quotation {
   {
     return $this->cliente;
   }
+
+  /**
+   * @param mixed $cliente
+   */
+  public function setCliente($cliente) {
+    $this->cliente = $cliente;
+  }
+
+
 
 
 }

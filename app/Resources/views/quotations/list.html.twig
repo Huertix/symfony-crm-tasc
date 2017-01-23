@@ -23,7 +23,7 @@
         {% for quotation in quotations %}
             <tr class="client_row">
                 <td class="col-md-2">{{ quotation.numero }}</td>
-                <td>{{ quotation.cliente }}</td>
+                <td>{{ quotation.cliente.id}}</td>
                 <td>{{ quotation.fecha }}</td>
                 <td>
                     <button class="btn btn-danger btn-xs">Modificar</button>
