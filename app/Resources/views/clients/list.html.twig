@@ -3,60 +3,81 @@
     <div class="content">
         <table class="table table-striped" id="clients_list">
             <thead>
-                <tr>
-                    <th></th>
-                    <th>
-                        <div class="col-md-2">Codigo</div>
+                <tr class="client_row">
+                    <th class="col-md-1">
+                        <button type="button" class="btn btn-warning collaps_all"
+                                onclick="collaps_all()"
+                                title="Collapse All">
+                                    <span class="glyphicon glyphicon-eject" aria-hidden="true">
+                                    </span>
+                        </button>
                     </th>
-                    <th>
-                        <div class="col-md-4">Clientes</div>
-                        <div class="col-md-8">
+                    <th class="col-md-2">
+                        <div>Codigo</div>
+                    </th>
+                    <th class="col-md-8">
+                        <div class="pull-left">Clientes</div>
+                        <div class="pull-right">
                             <input type="text" onkeyup="filter(this)" name="search" id="search" placeholder="Filtro"
                                    class="pull-right"/>
                         </div>
                     </th>
-
                 </tr>
             </thead>
             <tbody>
             {% for client in clients %}
                 <tr class="client_row">
-                    <td>
-                        {% if client.presupuestos|length > 0 %}
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{ client.id }}">
-                                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true">
+                    <td class="col-md-1">
+                        <div>
+                            {% if client.presupuestos|length > 0 %}
+                                <button type="button" class="btn btn-info quotation_collapsable_btn"
+                                        data-toggle="collapse"
+                                        data-target="#{{ client.id }}"
+                                        onclick="collaps_btn(this)">
+                                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true">
 
-                                </span>
-                            </button>
-                        {% endif %}
+                                    </span>
+                                </button>
+                            {% endif %}
+                        </div>
                     </td>
-                    <td>{{ client.id }}</td>
-                    <td>
-                        <a href="{{ path('clients_show', {'clientCode': client.id}) }}">{{ client.nombre }}</a>
+                    <td class="col-md-2">
+                        <div >{{ client.id }}</div>
                     </td>
-                    <tr id="{{ client.id }}" class="collapse">
-
-                        <td>Prueba</td>
-
-                        {#<table>#}
-                            {#<thead>#}
-                            {#<tr>#}
-                                {#<th>Presupuesto</th>#}
-                                {#<th>Fecha</th>#}
-                            {#</tr>#}
-                            {#</thead>#}
-                            {#<tbody>#}
-                                {#{% for presupuesto in client.presupuestos %}#}
-                                    {#<tr>#}
-                                        {#<td>{{ presupuesto.numero }}</td>#}
-                                        {#<td>{{ presupuesto.fecha }}</td>#}
-                                    {#</tr>#}
-
-                                {#{% endfor %}#}
-                            {#</tbody>#}
-                        {#</table>#}
-
-                    </tr>
+                    <td class="col-md-6">
+                        <div>
+                            <a href="{{ path('clients_show', {'clientCode': client.id}) }}">{{ client.nombre }}</a>
+                        </div>
+                        <div class="container collapse col-md-6" id="{{ client.id }}">
+                            <div class="col-md-12" style="margin-top: 20px; background: #13e2d0; border-radius: 5px; font-size: 1.2em">
+                                    <div class="col-md-12" style="text-align: center; font-weight: bold">
+                                        <h4>PRESUPUESTOS</h4>
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1">
+                                        Numero
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1">
+                                        Fecha
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1">
+                                        Importe
+                                    </div>
+                            </div>
+                            {% for presupuesto in client.presupuestos %}
+                                <div class="col-md-12" style="margin-top: 10px; font-size: 1.2em">
+                                    <div class="col-md-3 col-md-offset-1">
+                                        <a href="{{ path('quotations_show', {'number': presupuesto.numero}) }}">{{ presupuesto.numero }}</a>
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1">
+                                        {{ presupuesto.fecha }}
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-1">
+                                        {{ presupuesto.importe|number_format(2, '.', ',') }} &euro;
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -32,6 +32,11 @@ class Quotation {
    */
   private $cliente;
 
+  /**
+   * @ORM\Column(type="decimal", precision=15, scale=6)
+   */
+  private $importe;
+
 
   /**
    * @return mixed
@@ -72,6 +77,20 @@ class Quotation {
    */
   public function setCliente($cliente) {
     $this->cliente = $cliente;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getImporte() {
+    return $this->importe;
+  }
+
+  /**
+   * @param mixed $importe
+   */
+  public function setImporte($importe) {
+    $this->importe = $importe;
   }
 
 }
