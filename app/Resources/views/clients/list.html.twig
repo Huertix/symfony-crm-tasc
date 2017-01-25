@@ -3,34 +3,60 @@
     <div class="content">
         <table class="table table-striped" id="clients_list">
             <thead>
-            <tr>
-                <th>
-                    <div class="col-md-2">Codigo</div>
-                </th>
-                <th>
-                    <div class="col-md-4">Clientes</div>
-                    <div class="col-md-8">
-                        <input type="text" onkeyup="filter(this)" name="search" id="search" placeholder="Filtro" class="pull-right"/>
-                    </div>
-                </th>
+                <tr>
+                    <th></th>
+                    <th>
+                        <div class="col-md-2">Codigo</div>
+                    </th>
+                    <th>
+                        <div class="col-md-4">Clientes</div>
+                        <div class="col-md-8">
+                            <input type="text" onkeyup="filter(this)" name="search" id="search" placeholder="Filtro"
+                                   class="pull-right"/>
+                        </div>
+                    </th>
 
-            </tr>
+                </tr>
             </thead>
             <tbody>
             {% for client in clients %}
                 <tr class="client_row">
-
-                    <td>{{ client.id }}</td>
-                    <td><a href="{{ path('clients_show', {'clientCode': client.id}) }}">{{  client.nombre }}</a></td>
                     <td>
-                        <select name="{{ client.id }}" id="{{ client.id }}">
+                        {% if client.presupuestos|length > 0 %}
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{ client.id }}">
+                                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true">
 
-                            {% for presupuesto in client.presupuestos %}
-                                <option value="{{ presupuesto.numero }}">{{ presupuesto.numero }}</option>
-                            {% endfor %}
-                        </select>
+                                </span>
+                            </button>
+                        {% endif %}
                     </td>
+                    <td>{{ client.id }}</td>
+                    <td>
+                        <a href="{{ path('clients_show', {'clientCode': client.id}) }}">{{ client.nombre }}</a>
+                    </td>
+                    <tr id="{{ client.id }}" class="collapse">
 
+                        <td>Prueba</td>
+
+                        {#<table>#}
+                            {#<thead>#}
+                            {#<tr>#}
+                                {#<th>Presupuesto</th>#}
+                                {#<th>Fecha</th>#}
+                            {#</tr>#}
+                            {#</thead>#}
+                            {#<tbody>#}
+                                {#{% for presupuesto in client.presupuestos %}#}
+                                    {#<tr>#}
+                                        {#<td>{{ presupuesto.numero }}</td>#}
+                                        {#<td>{{ presupuesto.fecha }}</td>#}
+                                    {#</tr>#}
+
+                                {#{% endfor %}#}
+                            {#</tbody>#}
+                        {#</table>#}
+
+                    </tr>
                 </tr>
             {% endfor %}
             </tbody>
@@ -50,10 +76,10 @@
             value = value.toUpperCase();
             console.log(value);
 
-            $(".client_row").each(function() {
+            $(".client_row").each(function () {
                 text = $(this)
                         .text()
-                        .replace(/(\r\n|\n|\r)/gm,"")
+                        .replace(/(\r\n|\n|\r)/gm, "")
                         .toString()
                         .trim()
                         .toUpperCase();

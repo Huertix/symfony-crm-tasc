@@ -74,7 +74,4 @@ class Quotation {
     $this->cliente = $cliente;
   }
 
-
-
-
 }
